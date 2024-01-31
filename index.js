@@ -16,7 +16,8 @@ app.use((req, res, next) => {
 app.get('/api/data', async (req, res) => {
     try {
         // Read CSV file and convert to JSON
-        const rawData = await readCSVFile('/public/dataset.csv');
+        const file = path.join(process.cwd(), 'public', 'dataset.csv');
+        const rawData = await readCSVFile(file);
 
         // Max Value Downsample the data
         const downsampledData = maxDownsample(rawData, 100); // Adjust threshold as needed
